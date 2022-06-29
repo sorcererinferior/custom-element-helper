@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>HTTP203 Rocks! 💖</h1>
+    <p>The example custom element in use here is from <a href="https://web.dev/components-examples-overview/">Google's
+            example</a> and it seems one of the authors of that article is Surma. Now go and watch Jake and Surma
+        hosting HTTP 203 on Youtube! (post-Surma-era hosts are cool too)
+    </p>
+
+    <!-- these are directly from the source -->
+    <style>
+        howto-toggle-button {
+            background-color: #eee;
+            padding: 3px;
+            cursor: default;
+            user-select: none;
+            border: 1px solid #333;
+            border-radius: 3px;
+            transition: background-color .2s ease;
+        }
+
+        howto-toggle-button[pressed],
+        howto-toggle-button:not([disabled]):active {
+            background-color: #999;
+        }
+
+        howto-toggle-button[disabled] {
+            opacity: 0.35;
+        }
+    </style>
+
+    <h1>Button below is our custom element</h1>
+    <howto-toggle-button>Press me</howto-toggle-button>
+
+
+    <script type="module">
+        // LOOK HERE!!
+        import { HowToToggleButton } from "./custom-elements/toggle-button/main.js";
+        customElements.define("howto-toggle-button", HowToToggleButton);
+    </script>
+</body>
+
+</html>
