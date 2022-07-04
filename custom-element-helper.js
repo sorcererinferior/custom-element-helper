@@ -31,6 +31,18 @@ function getCssString(your_import_meta) {
 	return fetch(getStylingPath(your_import_meta)).then(rsp => rsp.text());
 }
 
+function adjustForRelativePath(templateElement, your_import_meta){
+	const sources = templateElement.content.querySelectorAll("img[src]");
+	for(const source of sources){
+		const src = source.getAttribute("src");
+		const wantToModify = src.startsWith("./");
+		if(!wantToModify) continue;
+
+		const absoluteified = (new URL(src, your_import_meta.url)).pathname;
+
+		source.setAttribute("src", absoluteified);
+	}
+}
 
 /**
  * You are a Custom Element. To be more precise, you are the main script for
@@ -47,6 +59,9 @@ export async function getTemplateElement(your_import_meta) {
 
 	let HTMLTemplate = helperParser.parseFromString(textTemplate, "text/html")
 		.querySelector("template");
+
+	adjustForRelativePath(HTMLTemplate)
+
 
 		/**
          * https://www.w3.org/wiki/Dynamic_style_-_manipulating_CSS_with_JavaScript
