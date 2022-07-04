@@ -5,7 +5,7 @@ const template = await getTemplateElement(import.meta);
 // it embeds style.css automatically inside template
 
 
-// and the rest is directly from Google!
+// and the rest is directly from Google! (except upgradeProperty is not defined in class, used from import)
 const KEYCODE = {
     SPACE: 32,
     ENTER: 13,
