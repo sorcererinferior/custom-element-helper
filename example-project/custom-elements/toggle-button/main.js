@@ -1,4 +1,4 @@
-import { upgradeProperty, getTemplateElement } from "../custom-element-helper.js";
+import { upgradeProperty, getTemplateElement } from "https://cdn.jsdelivr.net/gh/sorcererinferior/custom-element-helper/custom-element-helper.js";
 
 // THIS IS ALL THIS HELPER IS ABOUT
 const template = await getTemplateElement(import.meta);
