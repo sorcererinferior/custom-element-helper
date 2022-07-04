@@ -1,3 +1,7 @@
+```javascript
+import { upgradeProperty, getTemplateElement } from "https://cdn.jsdelivr.net/gh/sorcererinferior/custom-element-helper/custom-element-helper.js";
+```
+
 > My opinionated approach to custom elements.
 > 
 > Check out `example-project` folder if you want a quick overview.
