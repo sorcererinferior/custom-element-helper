@@ -60,7 +60,7 @@ export async function getTemplateElement(your_import_meta) {
 	let HTMLTemplate = helperParser.parseFromString(textTemplate, "text/html")
 		.querySelector("template");
 
-	adjustForRelativePath(HTMLTemplate)
+	adjustForRelativePath(HTMLTemplate, your_import_meta)
 
 
 		/**
