@@ -1,5 +1,5 @@
 ```javascript
-import { upgradeProperty, getTemplateElement } from "https://cdn.jsdelivr.net/gh/sorcererinferior/custom-element-helper/ce-helper.js";
+import { upgradeProperty, getTemplateElement } from "https://cdn.jsdelivr.net/gh/sorcererinferior/custom-element-helper@master/ce-helper.js";
 ```
 
 > My opinionated approach to custom elements.
