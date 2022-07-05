@@ -16,19 +16,19 @@ const helperParser = new DOMParser();
  * so that we, common/boilerplate code, can know the path to that file.
  * @returns Text content of "template.html" (with all html tags and everything.)
  */
-function getTemplateString(your_import_meta) {
-	return fetch((new URL("./template.html", your_import_meta.url)).pathname).then(
+function getTemplateString(your_import_meta, templateFile = "./template.html") {
+	return fetch((new URL(templateFile, your_import_meta.url)).pathname).then(
 		response => response.text()
 	)
 }
 
-function getStylingPath(your_import_meta) {
-	return (new URL("./style.css", your_import_meta.url)).pathname;
+function getStylingPath(your_import_meta, styleFile = "./style.css") {
+	return (new URL(styleFile, your_import_meta.url)).pathname;
 }
 
 
-function getCssString(your_import_meta) {
-	return fetch(getStylingPath(your_import_meta)).then(rsp => rsp.text());
+function getCssString(your_import_meta, styleFile = "./style.css") {
+	return fetch(getStylingPath(your_import_meta, styleFile)).then(rsp => rsp.text());
 }
 
 function adjustForRelativePath(templateElement, your_import_meta){
@@ -52,10 +52,12 @@ function adjustForRelativePath(templateElement, your_import_meta){
  * This, provides you that template element as HTMLTemplateElement.
  * @param your_import_meta Just type `import.meta`. I need this to know *your* location.
  * Only then I can get the `template.html` in the same folder as you.
+ * @param templateFile (Optional) Path to template.html relative to main script. Defaults to `./template.html`. Modify this if you want a different name for template file.
+ * @param styleFile (Optional) Path to style.css relative to main script. Defaults to `./style.css`. Modify this if you want a different name for style file.
  * @returns 
  */
-export async function getTemplateElement(your_import_meta) {
-	const textTemplate = await getTemplateString(your_import_meta);
+export async function getTemplateElement(your_import_meta, templateFile = "./template.html", styleFile = "./style.css") {
+	const textTemplate = await getTemplateString(your_import_meta, templateFile);
 
 	let HTMLTemplate = helperParser.parseFromString(textTemplate, "text/html")
 		.querySelector("template");
@@ -83,7 +85,7 @@ export async function getTemplateElement(your_import_meta) {
 		 * Alas. Now I can finally put this thing in the past.
 		 */
 	const stl = document.createElement("style");
-	stl.innerHTML = await getCssString(your_import_meta);
+	stl.innerHTML = await getCssString(your_import_meta, styleFile);
 	HTMLTemplate.content.prepend(stl);
 
 	return HTMLTemplate;
